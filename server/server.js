@@ -7,6 +7,7 @@
 var app = require('./app');
 var debug = require('debug')('express-react:server');
 var http = require('http');
+var database = require("./database");
 
 /**
  * Get port from environment and store in Express.
@@ -63,6 +64,8 @@ function onError(error) {
     : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
+  database.close();
+  
   switch (error.code) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges');
@@ -81,7 +84,8 @@ function onError(error) {
  * Event listener for HTTP server "listening" event.
  */
 
-function onListening() {
+async function onListening() {
+  await database.connect();
   var addr = server.address();
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr

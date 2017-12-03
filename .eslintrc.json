@@ -1,0 +1,40 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "sourceType": "module",
+        "ecmaVersion": 2017
+    },
+    "rules": {
+      "arrow-spacing": ["warn", { "before": true, "after": true }],
+      "brace-style": ["warn", "1tbs", { "allowSingleLine": true }],
+      "object-curly-spacing": ["warn", "always"],
+      "comma-spacing": ["warn", { "before": false, "after": true }],
+      "comma-style": ["warn", "last"],
+      "constructor-super": "warn",
+      "curly": ["warn", "all"],
+      "eqeqeq": ["warn", "always"],
+      "indent": ["warn", 2, { "VariableDeclarator": 1, "SwitchCase": 1 }],
+      "key-spacing": ["warn", { "beforeColon": false, "afterColon": true }],
+      "keyword-spacing": ["warn", { "before": true, "after": true }],
+      "no-alert": "warn",
+      "no-console": "warn",
+      "no-const-assign": "warn",
+      "no-irregular-whitespace": "warn",
+      "no-this-before-super": "warn",
+      "no-undef": "warn",
+      "no-unreachable": "warn",
+      "no-unused-vars": "warn",
+      "semi": "warn",
+      "space-before-blocks": "warn",
+      "template-curly-spacing": ["warn", "always"],
+      "valid-typeof": "warn"
+    }
+}
