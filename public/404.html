@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- Shamlessly borrowed from https://github.com/rafrex/react-github-pages/-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TheF1rstPancake</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      /////////////////////////////////////////////////////////////////////////
+      // React for GitHub Pages - https://github.com/rafrex/react-github-pages
+      // ----------------------------------------------------------------------
+      // This script takes the current url and converts the path, query and
+      // hash fragment into just a query string, and then redirects the browser
+      // to the new url with only a query string and no path or hash fragment,
+      // e.g. http://www.foo.tld/one/two?a=b&c=d#qwe, becomes
+      // http://www.foo.tld/?redirect=true&pathname=%2Fone%2Ftwo&query=a=b%26c=d&hash=qwe
+      /////////////////////////////////////////////////////////////////////////
+      // Remove '&' from text and replace with '%26'
+      function noAmp(text) {
+        return text.split('&').join('%26');
+      }
+      // Incase browser doesn't support window.location.origin
+      function getOrigin() {
+        if (window.location.origin) return window.location.origin;
+        return window.location.protocol + "//" + window.location.hostname +
+          (window.location.port ? ':' + window.location.port : '');
+      }
+      var origin = getOrigin();
+
+      var path = window.location.pathname.split("/").splice(1);
+
+      var repo = noAmp(path[0]);
+      var pathname = noAmp(path.slice(1).join('%2F'));
+      var query = noAmp(window.location.search.slice(1));
+      var hash = noAmp(window.location.hash.slice(1));
+      console.log("INCOMING LOCATION: ", window.location);
+      console.log("OUTGOING: ", origin, repo, pathname, query, hash);
+      var redirectTo = origin + '/' + repo + '/?' +
+        'redirect=true' +
+        '&pathname=' + pathname +
+        '&query=' + query +
+        '&hash=' + hash;
+      console.log("REDIRECTING: ", redirectTo);
+      window.location.replace(redirectTo);
+    </script>
+  </body>
+</html>

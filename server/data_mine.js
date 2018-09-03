@@ -62,7 +62,7 @@ async function getGamesByWeek(collection) {
   var max_date = new Date(new Date().getTime() + (1000*60*60*24*7));
   var return_value = [];
   while (end_date <= max_date) {
-    var results = collection.find({ period: { $gte: start_date.toISOString(), $lt: end_date.toISOString() } });//.toArray();
+    var results = collection.find({ period: { $gte: start_date, $lt: end_date} });//.toArray();
     var payload = {
       week: {
         start: start_date, 
@@ -146,7 +146,7 @@ async function groupByWeek(results) {
   return weeks;
 }
 
-async function getQuitRate(week, collection){
+async function getQuitRate(week, collection) {
   var num_games = await week.cursor.count();
   var num_quits = await collection.find(
     { 

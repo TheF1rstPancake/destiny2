@@ -1,24 +1,126 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 150px;
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #1baaac;
   height: 150px;
   padding: 20px;
   color: white;
+  text-align:center;
+}
+.gradient-border {
+  background-image: linear-gradient(#d3c38c, white);
+  height:10px;
 }
 
 .App-intro {
   font-size: large;
 }
 
+.App-container {
+  margin:10px auto;
+  width: 100%;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.container {
+  display:flex;
+  flex-direction: column;
+}
+.graphs-container {
+  margin: 10px 15px;
+}
+
+.flex-row {
+  flex-direction: row;
+  display: flex;
+}
+
+.flex-full {
+  flex: 1 0 100%;
+}
+.flex-half {
+  flex: 1 0 50%;
+}
+
+.posts {
+  margin: 0px 15%;
+}
+.posts div {
+  margin: 10px 0px;
+}
+.posts a {
+  color: #1f77b4;
+}
+.posts h1{
+  font-size: 30px;
+  font-weight:900;
+  text-transform: capitalize;
+  margin: 10px 0px 2px 0px;
+}
+
+.posts h4 {
+  font-size:14px;
+  color: #777;
+  margin: 10px 0px 2px 0px;
+}
+
+.strike {
+  text-decoration: line-through;
+}
+.footer {
+  background-color: #280001;
+  margin-top: 10px 0px;
+  padding: 10px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+.footer a{
+  color: white;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.ephemeral {
+
+}
+
+.graph {
+  margin: 5px 0px;
+  width:100%;
+  height:100%;
+  border: 1px #d3d3d3 solid;
+
+}
+
+.graph h1{
+  font-size: 1em;
+  text-align:center;
+  font-weight: 600;
+  margin:5px 0px 0px 0px;
+}
+
+.plot-class {
+  width: 100%;
+  height:400px
+}
+
+@media screen and (max-width: 600px){
+  .plot-class {
+    width: 100%;
+    height: 300px;
+  }
 }

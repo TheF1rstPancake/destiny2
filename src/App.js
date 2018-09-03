@@ -1,76 +1,79 @@
-/* global Plotly:true */
-
 import React, { Component } from 'react';
-import axios from 'axios';
-import logo from './logo.svg';
+import logo from './logo.jpg';
 import './App.css';
+import PropTypes from "prop-types";
+import { Route, Link, Switch, Redirect } from "react-router-dom";
 
-import createPlotlyComponent from 'react-plotly.js/factory';
+import Posts from './posts';
+import MetaPost from './posts/Meta';
 
-const Plot = createPlotlyComponent(Plotly);
+import Graphs from './graphs';
+import Footer from './components/Footer';
 
 class App extends Component {
   constructor() {
     super();
-    this.state = { message: '' };
-
-    this.createChart = this.createChart.bind(this);
-    this.formatDate = this.formatDate.bind(this);
+    this.state = { 
+      message: ''
+    };
   }
-
+  getChildContext() {
+    return {
+      location: this.props.location,
+    };
+  }
   componentDidMount() {
-    fetch('/api/message')
-      .then(response => response.json())
-      .then(json => this.setState({ message: json }));
-
-    axios.get("/api/weekly")
-      .then((response) => {
-        // format the data in the way that we need it
-        var x = [];
-        var y = [];
-        for (var i in response.data) {
-          x.push(
-            `${ this.formatDate(new Date(response.data[i].start)) }-${ this.formatDate(new Date(response.data[i].end)) }`
-          );
-          y.push(response.data[i].quits/response.data[i].num_games);
-        }
-        this.setState({ 
-          weekly: response.data,
-          chartData: {
-            x: x,
-            y: y
-          }
-        });
-      });
+    // pull params off of the location
+    // and see if this was a redirect from the GitHub 404 page
+    var search = this.props.location.search;
+    var params = search.slice(1).split("&");
+    var obj = {};
+    for (var i=0; i< params.length; i++) {
+      var l = params[i].split("=");
+      obj[l[0]] = l[1] !== undefined && l[1] !== '' ? l[1].replace("%2F", "/") : null;
+    }
+    this.setState(obj);
   }
+  
 
-  formatDate(d) {
-    return `${ d.getUTCMonth()+1 }/${ d.getUTCDate() }`;
-  }
-
-  createChart() {
-    var chartData = this.state.chartData;
-    chartData.type = "line";
-    chartData.name="Quit Rate";
-    return <Plot
-      data={[chartData]}
-    />;
-  }
-
+  // here we will render our standard header and footer
+  // we will also allow this level to initialize most of the routes that we want to manage.
+  // some of these routes may have sub routes 
   render() {
     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>{this.state.message}</h2>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        {this.state.chartData !== undefined ? this.createChart():null}
+        <div className="gradient-border"></div>
+        <div className="App-container">
+          <Switch>
+              <Route exact path="/posts" component={Posts}/>
+              <Route path="/posts/meta" component={MetaPost}/>
+              <Route path="/graphs" component={Graphs}/>
+          </Switch>
+        </div>
+        <Footer>
+          <div className="flex-row flex-full">
+            <div className="flex-half center-text">
+              <Link to="/posts">Posts</Link>
+            </div>
+            <div className="flex-half center-text">
+              <Link to="/graphs">Graphs</Link> 
+            </div>
+          </div>
+        </Footer>
+
+        {this.state.redirect === 'true' ? 
+          <Redirect to={this.state.pathname}/>
+          : null }
       </div>
     );
   }
 }
+
+App.childContextTypes = {
+  location: PropTypes.object
+};
 
 export default App;

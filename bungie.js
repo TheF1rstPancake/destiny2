@@ -1,6 +1,8 @@
 const axios = require("axios");
+const sqlite = require("sqlite3");
 
 var WAIT = 0; // the amount of time to wait before actually making the request
+var manifest = null;
 
 function timeoutify(f, time) {
   return new Promise((resolve, reject) => {
@@ -22,6 +24,12 @@ var requests = axios.create({
   baseURL: 'https://bungie.net/Platform/',
   headers: { 'X-API-Key': process.env.DESTINY_API_KEY }
 });
+var getAxios = () => {
+  return axios.create({
+    baseURL: 'https://bungie.net/',
+    headers: { 'X-API-Key': process.env.DESTINY_API_KEY }
+  });
+};
 
 async function getPGCR2(pgcr_id) {
   return await requests.get(`/Destiny2/Stats/PostGameCarnageReport/${ pgcr_id }`);
@@ -71,7 +79,15 @@ async function getPGCR(pgcr_id, options) {
   return null;
 }
 
+async function getManifest() {
+  
+}
+
 module.exports = {
   requests: requests,
-  getPGCR: getPGCR
+  getPGCR: getPGCR,
+  getAxios: getAxios,
+  manifest: () => {
+
+  }
 };

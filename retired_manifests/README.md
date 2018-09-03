@@ -1,0 +1,1 @@
+This file is temporary storage for old manifest files in case we decide to do something with them.

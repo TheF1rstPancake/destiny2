@@ -55,6 +55,7 @@ function normalizePort(val) {
  */
 
 function onError(error) {
+  console.log("ERROR: ", error);
   if (error.syscall !== 'listen') {
     throw error;
   }
@@ -64,6 +65,7 @@ function onError(error) {
     : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
+  console.log("Database: ", database);
   database.close();
   
   switch (error.code) {
