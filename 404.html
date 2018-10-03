@@ -28,9 +28,10 @@
       }
       var origin = getOrigin();
       var pathname = noAmp(window.location.pathname.split('/').join('%2F'));
+      var repo = noAmp(window.location.pathname.split('/')[0]);
       var query = noAmp(window.location.search.slice(1));
       var hash = noAmp(window.location.hash.slice(1));
-      var redirectTo = origin + '/?' +
+      var redirectTo = origin + '/' + repo + '/?' +
         'redirect=true' +
         '&pathname=' + pathname +
         '&query=' + query +
