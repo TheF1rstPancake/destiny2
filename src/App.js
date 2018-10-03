@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.jpg';
+import logo from './logo-down.jpg';
 import './App.css';
 import PropTypes from "prop-types";
 import { Route, Link, Switch, Redirect } from "react-router-dom";
@@ -61,6 +61,12 @@ class App extends Component {
             <div className="flex-half center-text">
               <Link to="/graphs">Graphs</Link> 
             </div>
+            
+          </div>
+          <div className="flex-row flex-full">
+            <div className="flex-full center-text">
+              <a href="https://www.pattibutler.com/">Logo credit to Patti Butler</a>
+              </div>
           </div>
         </Footer>
 

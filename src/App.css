@@ -84,6 +84,7 @@
   margin-top: 10px 0px;
   padding: 10px 0px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
 .footer a{
@@ -97,6 +98,7 @@
 .ephemeral {
 
 }
+
 
 .graph {
   margin: 5px 0px;

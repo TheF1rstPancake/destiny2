@@ -34,7 +34,7 @@ class MetaPost extends Component {
           We think that "game appearances" is a better metric for measuring Destiny's Meta than something like "number of kills" would be.  The reason is that some weapons may be a part of the meta, but may actually constitute a low number of overall kills.  For example, Sins of the Past has been a steady member of the Top Ten, but it's number of kills is actually rather low compared to other weapons likely due to the decreased role that heavy (and secondary) weapons played in Year 1.  
         </div>
         <div>
-          There are a few trends that we can observe from this chart.  First, the meta does cycle.  The weapons included in each change over time, as we should expect.  Second, if you double click in on individual weapons, you'll see that most weapons have a growth period.  It is rare for a gun to catapult up to the top of the chart.  There is usually a period at which it breaks through the meta barrier and then continues to grow from there.  Sometimes, that growth is explosive (like Graviton Lance) or much steadier (like Origin Story).
+          There are a few trends that we can observe from this chart.  First, Destiny's Meta does cycle.  The weapons included in each week change over time, as we should expect.  Second, if you double click in on individual weapons, you'll see that most weapons have a growth period.  It is rare for a gun to catapult up to the top of the chart.  There is usually a period at which it breaks through the meta barrier and then continues to grow from there.  Sometimes, that growth is explosive (like Graviton Lance) or much steadier (like Origin Story).
         </div>
         <div>
           The "explosiveness" of growth may be worth a more investigation.  Why do certain weapons explode versus slowly build up?  The current working hypothesis is that explosive growth relates to exploits resulting from bugs or odd balance adjustments made by Bungie.  For example, Prometheus Lens (which isn't showed here) randomly jumps from almost no usage to 42% and then to almost 80% during two weeks where the gun was <span className="strike">overpowered</span> oddly efficient.  After a patch, the weapon quickly disappears from use.  Graviton Lance has a similar growth pattern.  It exists below 10% usage before skyrocketing to 48% in early May and eventually peaking at 91%.
@@ -48,7 +48,7 @@ class MetaPost extends Component {
           What we can see is that the <strong>vast</strong> majority of weapons have less than 5% usage.  The number of weapons that see increased usage continues to diminish.  It may be hard to see on a smaller screen, but on average, there are only ten guns that have a usage rate of 35% or above.  So emperically speaking, a weapon must appear in about 1/3 games for it to become a member of "the meta."
         </div>
         <div>
-          There are several factors in play here that we don't necessarily account for.  First, Destiny was 4v4 for a period of time.  So the maximum number of weapons that could appear in a game (assuming every player used a different weapon) in every slot was 24.  Now that most of Crucible is 6v6, the max number is 36.  With more players per game, the likelihood of any gun appearing increases because there are more slots that the weapon could fill.  The other factor is an increase in the number of weapons available.  As more weapons are added, and assuming all things are equal (which if they were, half of the Destiny sub-Reddit wouldn't exist), then the probability of any weapon being chosen would decrease.
+          There are several factors in play here that we don't necessarily account for.  First, Destiny was 4v4 for a period of time.  So the maximum number of weapons that could appear in a game (assuming every player used a different weapon in every slot) was 24 ((4+4) * 3).  Now that most of Crucible is 6v6, the max number is 36 ((6+6) * 3).  With more players per game, the likelihood of any gun appearing increases because there are more slots that the weapon could fill.  The other factor is an increase in the number of weapons available.  As more weapons are added, and assuming all things are equal (which if they were, half of the Destiny sub-Reddit wouldn't exist), then the probability of any weapon being chosen would decrease.
         </div>
         <div>
           Again, in general, a weapon must break the 35% usage barrier to gain entry to the meta.  
@@ -61,7 +61,7 @@ class MetaPost extends Component {
         </div>
         <Meta/>
         <div>
-          What we get from this is that only 48% of top ten weapons in any given week survive to metadom.  In other words, 48% of top ten weapons do not survive 3 weeks in the top ten.
+          What we get from this is that only around 50% of top ten weapons in any given week survive to metadom.  In other words, half of top ten weapons do not survive 3 weeks in the top ten.
         </div>
         <div>
           After that, it's a much more mixed bag.  20% of top ten weapons stay in the top ten for up to 10 weeks (a little over 3 months for the less mathematically inclined).  The rest exist in a state scattered between 10 and 51 weeks.
@@ -74,10 +74,10 @@ class MetaPost extends Component {
         </div>
         <MetaAverages/>
         <div>
-          What we see is that on average, these weapons experience usage growth in their first 3 weeks and then they make a rather large jump during their fourth and fifth weeks (if they make it that far at all).  As a weapon continues in its lifecycle past five weeks, it's usage remains rather constant.  There is an odd spike at 51 weeks likely because there are so few guns out there, it's hard to get an accurate read.
+          There isn't a great pattern week over week here.  What we expected to see was after a weapon's first week in metadom, it would continue to see a rise.  As more players get ruthlessly murdered by a weapon, their desire to use it would increase.  What we actually see is that a weapon's usage remains, in general, constant week over week once it joins the meta.
         </div>
         <div>
-          So it will be interesting to see the Forsaken guns that have climbed into the meta.  As we enter the fourth week, Go Figure, Ace of Spaces, and Trust have seen steady climbs.  If Year 1 is any indication, the next few weeks will show us if those guns are here to stay.
+          So it will be interesting to see the Forsaken guns that have climbed into the meta.  As we enter the fourth week, Go Figure, Ace of Spaces, and Trust have seen steady climbs.  If Year 1 is any indication, the next few weeks will solidify their place in the meta and any one of them could stick around similar to Origin Story, Uriel's Gift and Graviton's Lance.  
         </div>
         <div>
           Or Bungie could throw another curveball at us and unlock a new area which unleashes a whole new wave of guns that renders this entire project useless.
