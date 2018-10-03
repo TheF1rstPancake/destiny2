@@ -27,10 +27,13 @@
           (window.location.port ? ':' + window.location.port : '');
       }
       var origin = getOrigin();
-      var pathname = noAmp(window.location.pathname.split('/').join('%2F'));
-      var repo = noAmp(window.location.pathname.split('/')[0]);
+      var repo = noAmp((window.location.pathname.split('/'))[0]);
+      var pathname = noAmp(window.location.pathname.split('/').slice(1).join('%2F'));
+      var repo = noAmp((window.location.pathname.split('/'))[0]);
       var query = noAmp(window.location.search.slice(1));
       var hash = noAmp(window.location.hash.slice(1));
+      console.log("INCOMING LOCATION: ", window.location);
+
       var redirectTo = origin + '/' + repo + '/?' +
         'redirect=true' +
         '&pathname=' + pathname +
