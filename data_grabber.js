@@ -49,9 +49,9 @@ async function writeToMongo(data, collection) {
  * @param {JSON response from API} response 
  * @param {MongoDB collection where response should be written} collection 
  */
-async function parseID(pgcr_id, response, collection) {
+async function parseID(pgcr_id, response, collection, options) {
   var data = response.data.Response;
-
+  options = options === undefined ? {} : options; 
   // seeing an odd error around activityDetails not being populated.  Figure out what that is
   if (data === undefined) {
     console.log("Activity Details is undefined: ", response.data);
@@ -70,14 +70,18 @@ async function parseID(pgcr_id, response, collection) {
   data.mode = data.activityDetails.mode;
   data.period = new Date(data.period);
   
-  // write to mongo
+  // skip the write and return the element
+  if (options.write === false) {
+    return data;
+  }
+
+   // write to mongo
   console.log(`Writing ${ pgcr_id } (${ data.period }) to Mongo`);
   try {
-
     writeToMongo(data, collection);
   } catch (err) {
           // code 11000 means we've already seen this ID before
-           // keep moving on regardless, but only log the unknowns
+          // keep moving on regardless, but only log the unknowns
     if (err.code !== 11000) {
       console.log("UNKOWN MONGO ERR: ", err);
     } 
@@ -115,7 +119,8 @@ async function fetchID(pgcr_id, collection, options) {
     return false;
   }
 
-  var parsed = await parseID(pgcr_id, response, collection);
+  // parse, format and write to Mongo
+  var parsed = await parseID(pgcr_id, response, collection, options);
   return parsed;
 }
 
@@ -275,7 +280,7 @@ if (require.main === module) {
       end_date: `${ now.getFullYear() }-${ now.getMonth() + 1 }-${ now.getDate() + 1 }`,
       min_jump: 1,
       max_jump: 5000,
-      rate: 10 // how many calls to make per second
+      rate: 8 // how many open calls to have
     }
   });
 
@@ -324,3 +329,7 @@ if (require.main === module) {
         });
   });
 }
+
+module.exports = {
+  fetchID: fetchID
+};

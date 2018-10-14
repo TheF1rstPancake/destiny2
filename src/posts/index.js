@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
-import MetaPost from './Meta';
 
 class Posts extends Component {
   constructor(props) {
@@ -9,8 +8,10 @@ class Posts extends Component {
   }
 
   render() {
-    return <div>
+    return <div className="posts">
       <Link to={`${ this.props.match.url }/meta`}>Meta</Link>
+      <br/>
+      <Link to={`${ this.props.match.url }/gambit_fireteams`}>Gambit Fireteams</Link>
     </div>;
   }
 }

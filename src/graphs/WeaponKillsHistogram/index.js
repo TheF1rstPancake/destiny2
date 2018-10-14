@@ -40,12 +40,10 @@ class WeaponKillsHistogram extends BaseGraph {
     chartData.name="Top Ten";
     return <Plot
       data={chartData}
-      layout={{ autosize: true }}
+      layout={{ autosize: true, margin: this.default_layout.margin, xaxis: { automargin: true } }}
       useResizeHandler={true}
       className="plot-class"
-      config={{
-        modeBarButtonsToRemove: ['lasso2d', 'autoScale2d', 'hoverClosestCartesian', 'toggleSpikelines']
-      }}
+      config={this.default_config}
     />;
   }
 

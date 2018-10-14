@@ -47,7 +47,8 @@ class Meta extends BaseGraph {
     chartData.name="Top Ten";
     return <Plot
       data={chartData}
-      layout={{ autosize: true, }}
+      layout={{ autosize: true, margin: this.default_layout.margin }}
+      config={this.default_config}
       useResizeHandler={true}
       className="plot-class"
     />;

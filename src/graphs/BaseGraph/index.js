@@ -9,6 +9,15 @@ class BaseGraph extends Component {
     super();
     this.state = {};
     this.formatDate = this.formatDate.bind(this);
+    this.default_layout = { 
+      margin: {
+        t: 20,
+        b: 20,
+      }
+    };
+    this.default_config = {
+      modeBarButtonsToRemove: ['lasso2d', 'autoScale2d', 'hoverClosestCartesian', 'toggleSpikelines', 'sendDataToCloud']
+    };
     //this.Plot = Plot;
   }
 

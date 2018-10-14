@@ -6,6 +6,7 @@ import { Route, Link, Switch, Redirect } from "react-router-dom";
 
 import Posts from './posts';
 import MetaPost from './posts/Meta';
+import GambitFireteamsPost from './posts/GambitFireteamsPost';
 
 import Graphs from './graphs';
 import Footer from './components/Footer';
@@ -50,6 +51,7 @@ class App extends Component {
           <Switch>
               <Route exact path="/posts" component={Posts}/>
               <Route path="/posts/meta" component={MetaPost}/>
+              <Route path="/posts/gambit_fireteams" component={GambitFireteamsPost}></Route>
               <Route path="/graphs" component={Graphs}/>
           </Switch>
         </div>
@@ -63,9 +65,9 @@ class App extends Component {
             </div>
             
           </div>
-          <div className="flex-row flex-full">
+          <div className="flex-row flex-full center-text">
             <div className="flex-full center-text">
-              <a href="https://www.pattibutler.com/">Logo credit to Patti Butler</a>
+              <a href="https://www.pattibutler.com/">Logo credit</a>
               </div>
           </div>
         </Footer>

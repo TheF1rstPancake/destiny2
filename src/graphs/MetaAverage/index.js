@@ -70,11 +70,9 @@ class Meta extends BaseGraph {
     return <Plot
       data={chartData}
       className='plot-class'
-      layout={{ autosize: true }}
+      layout={{ autosize: true, margin: this.default_layout.margin }}
       useResizeHandler={true}
-      config={{
-        modeBarButtonsToRemove: ['lasso2d', 'autoScale2d', 'hoverClosestCartesian', 'toggleSpikelines']
-      }}
+      config={this.default_config}
     />;
   }
 
