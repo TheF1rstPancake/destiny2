@@ -8,6 +8,7 @@ import GambitFireteamVsFireteam from './GambitFireteamVsFireteam';
 import GambitFireteamVsFireteamHistogram from './GambitFireteamVsFireteamHistogram';
 import GambitQuitRate from './GambitQuitRate';
 import GambitQuitVictories from './GambitQuitVictories';
+import GambitFireteamVsFireteamWithQuitters from './GambitFireteamvsFireteamWithQuitters';
 
 import { Route, Switch } from "react-router-dom";
 import React, { Component } from 'react';
@@ -29,6 +30,7 @@ class Graphs extends Component {
         <Route path={`${ this.props.match.url }/gambit_fireteam_vs_fireteam_histogram`} component={GambitFireteamVsFireteamHistogram}/>
         <Route path={`${ this.props.match.url }/gambit_fireteam_quit_rate`} component={GambitQuitRate}/>
         <Route path={`${ this.props.match.url }/gambit_quit_victories`} component={GambitQuitVictories}/>
+        <Route path={`${ this.props.match.url }/gambit_fireteam_vs_fireteam_with_quitters`} component={GambitFireteamVsFireteamWithQuitters}/>
       </Switch>
     </div>;
   }

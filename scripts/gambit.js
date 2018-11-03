@@ -236,17 +236,29 @@ async function winRatePerFireteam(collection) {
  * This IGNORES games where people may have quit.
  * @param {*} collection 
  */
-async function playersPerTeam(collection) {
-  var pipeline = [
-    { $match: { //remove matches with invalid data AND remove matches where people quit
+async function playersPerTeam(collection, include_quitters) {
+  include_quitters = include_quitters === undefined ? false : include_quitters;
+
+  var initial_match = { 
+    $match: { //remove matches with invalid data AND remove matches where people quit
       mode: 63,
-      "entries": { $not: { $elemMatch: { "values.standing.basic.displayValue": "Tie" } } },
-      "entries": { $not: { $elemMatch: { "values.team.basic.value": -1 } } },
-      "entries": { $not: { $elemMatch: {
-        "values.completed.basic.value": 0
-      } } } 
-    } }, 
-    { $unwind: "$entries" },    // unwind each player
+      $and: [
+          { entries: { $not: { $elemMatch: { "values.standing.basic.displayValue": "Tie" } } } }, 
+          { entries: { $not: { $elemMatch: { "values.team.basic.value": -1 } } } }
+      ]
+    } 
+  };
+
+  if (include_quitters === false) {
+    initial_match['$match']['$and'].push({ entries: { $not: { $elemMatch: { "values.completed.basic.value": 0 } } } });
+    second_filter = { $match: { "entries.values.completed.basic.value": 1 } };
+  }
+  
+
+  var pipeline = [
+    initial_match,
+    { $unwind: "$entries" },    // unwind each player,
+    { $match: { "entries.values.completed.basic.value": 1 } }, // make sure we got rid of all quitters
     { 
       $group: { //group by game and team to count the number of players in each fireteam (each fireteam is a different record after this)
         _id: { 
@@ -482,13 +494,7 @@ MongoClient.connect(url, async function(err, db) {
   console.log("Database connected!");
   var collection = db.collection("PGCR");
 
-  //var r = await gambitGamesPerWeek(collection);
-  //console.log("Games per week: ", r);
 
-  //r = await weaponUsage(collection);
-  //console.log("Sleeper: ", JSON.stringify(r, null, 2));
-  // get the mean, min, max and standard dev of different attributes
-  //var d = await describe(collection, ['motesLost', 'motesDeposited', 'motesDenied', 'motesDegraded', 'smallBlockersSent', 'mediumBlockersSent', 'largeBlockersSent', 'invasions', 'invasionKills']);
   var playerBreakdown = await playersPerTeam(collection);
   var sum = 0;
   for (var i in playerBreakdown) {
@@ -504,6 +510,22 @@ MongoClient.connect(url, async function(err, db) {
   console.log("Team Composition Histogram: ", final);
   fs.writeFileSync("./src/graph_data/GambitPlayersPerTeam/index.js", `module.exports = ${ JSON.stringify({ data: final }, null, 2) }`);
 
+  // do the same analysis, but include matches where people quit
+  console.log("Team Composition with Quitters");
+  var playerBreakdown = await playersPerTeam(collection, true);
+  var sum = 0;
+  for (var i in playerBreakdown) {
+    sum+=playerBreakdown[i].count;
+  }
+  console.log("Total number of games: ", sum);  
+  // sort the output
+  var k = Object.keys(playerBreakdown).sort();
+  var final = {};
+  for (var i in k) {
+    final[k[i]] =  { count: playerBreakdown[k[i]].count/sum, wins: playerBreakdown[k[i]].wins/playerBreakdown[k[i]].count };
+  }
+  console.log("Team Composition with Quitters: ", final);
+  fs.writeFileSync("./src/graph_data/GambitPlayersPerTeam_withQuitters/index.js", `module.exports = ${ JSON.stringify({ data: final }, null, 2) }`);
   
   // calculate win rate
   var winRate = await winRatePerFireteam(collection);
