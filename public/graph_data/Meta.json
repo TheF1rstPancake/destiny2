@@ -1,0 +1,263 @@
+{
+  "num_weeks": [
+    null,
+    17,
+    7,
+    4,
+    2,
+    2,
+    4,
+    1,
+    1,
+    null,
+    null,
+    1,
+    null,
+    null,
+    null,
+    1,
+    null,
+    null,
+    null,
+    1,
+    null,
+    2,
+    null,
+    null,
+    1,
+    null,
+    null,
+    1,
+    null,
+    null,
+    null,
+    null,
+    null,
+    1,
+    null,
+    null,
+    null,
+    1,
+    null,
+    null,
+    null,
+    null,
+    null,
+    2,
+    null,
+    1,
+    null,
+    null,
+    null,
+    1,
+    null,
+    2
+  ],
+  "total_weapons": 53,
+  "averages": [
+    {
+      "num_weapons": 53,
+      "average": 0.49790841304338496
+    },
+    {
+      "num_weapons": 36,
+      "average": 0.48091051623061176
+    },
+    {
+      "num_weapons": 29,
+      "average": 0.3941199894800753
+    },
+    {
+      "num_weapons": 25,
+      "average": 0.5004609466496265
+    },
+    {
+      "num_weapons": 23,
+      "average": 0.42424431636019827
+    },
+    {
+      "num_weapons": 21,
+      "average": 0.351067439886116
+    },
+    {
+      "num_weapons": 17,
+      "average": 0.3741875573627924
+    },
+    {
+      "num_weapons": 16,
+      "average": 0.5093912633933453
+    },
+    {
+      "num_weapons": 15,
+      "average": 0.5006481862537764
+    },
+    {
+      "num_weapons": 15,
+      "average": 0.5088804602194221
+    },
+    {
+      "num_weapons": 15,
+      "average": 0.43520136074682125
+    },
+    {
+      "num_weapons": 14,
+      "average": 0.4696429542560316
+    },
+    {
+      "num_weapons": 14,
+      "average": 0.4696048879568813
+    },
+    {
+      "num_weapons": 14,
+      "average": 0.5137281258719054
+    },
+    {
+      "num_weapons": 14,
+      "average": 0.46357312738466633
+    },
+    {
+      "num_weapons": 13,
+      "average": 0.43150717665841765
+    },
+    {
+      "num_weapons": 13,
+      "average": 0.5815876353037126
+    },
+    {
+      "num_weapons": 13,
+      "average": 0.504793859930333
+    },
+    {
+      "num_weapons": 13,
+      "average": 0.39381046725588625
+    },
+    {
+      "num_weapons": 12,
+      "average": 0.4880741366897116
+    },
+    {
+      "num_weapons": 12,
+      "average": 0.49637648169587123
+    },
+    {
+      "num_weapons": 10,
+      "average": 0.48829040954778313
+    },
+    {
+      "num_weapons": 10,
+      "average": 0.39123014110870047
+    },
+    {
+      "num_weapons": 10,
+      "average": 0.3282483284651193
+    },
+    {
+      "num_weapons": 9,
+      "average": 0.358038354606123
+    },
+    {
+      "num_weapons": 9,
+      "average": 0.3216273234461892
+    },
+    {
+      "num_weapons": 9,
+      "average": 0.39637733659756264
+    },
+    {
+      "num_weapons": 8,
+      "average": 0.4093567200393556
+    },
+    {
+      "num_weapons": 8,
+      "average": 0.45011837354708706
+    },
+    {
+      "num_weapons": 8,
+      "average": 0.3779650904144407
+    },
+    {
+      "num_weapons": 8,
+      "average": 0.43037303926787673
+    },
+    {
+      "num_weapons": 8,
+      "average": 0.4149688806448726
+    },
+    {
+      "num_weapons": 8,
+      "average": 0.3827056555740256
+    },
+    {
+      "num_weapons": 7,
+      "average": 0.4263367618344027
+    },
+    {
+      "num_weapons": 7,
+      "average": 0.3579628539779216
+    },
+    {
+      "num_weapons": 7,
+      "average": 0.3757527926635521
+    },
+    {
+      "num_weapons": 7,
+      "average": 0.3521914948103051
+    },
+    {
+      "num_weapons": 6,
+      "average": 0.410812524374762
+    },
+    {
+      "num_weapons": 6,
+      "average": 0.404199945350488
+    },
+    {
+      "num_weapons": 6,
+      "average": 0.36306216482574016
+    },
+    {
+      "num_weapons": 6,
+      "average": 0.3792046546178368
+    },
+    {
+      "num_weapons": 6,
+      "average": 0.3618196840374432
+    },
+    {
+      "num_weapons": 6,
+      "average": 0.33080046725366496
+    },
+    {
+      "num_weapons": 4,
+      "average": 0.46326467274012106
+    },
+    {
+      "num_weapons": 4,
+      "average": 0.3435216059171581
+    },
+    {
+      "num_weapons": 3,
+      "average": 0.47254811894971993
+    },
+    {
+      "num_weapons": 3,
+      "average": 0.48555414606363423
+    },
+    {
+      "num_weapons": 3,
+      "average": 0.5637973438268569
+    },
+    {
+      "num_weapons": 3,
+      "average": 0.4798217854763491
+    },
+    {
+      "num_weapons": 2,
+      "average": 0.4859353023909986
+    },
+    {
+      "num_weapons": 2,
+      "average": 0.6328781512605042
+    }
+  ]
+}

@@ -1,15 +1,15 @@
 import React from 'react';
 import BaseGraph from '../BaseGraph';
-import { GambitPlayerPerTeamData } from '../../graph_data';
 
 import Plot from 'react-plotly.js';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 
 class GambitFireteamVsFireteamHistogram extends BaseGraph {
   constructor(props) {
     super(props);
     this.state = {
-      data: GambitPlayerPerTeamData.data,
       groupData: false
     };
 
@@ -17,18 +17,14 @@ class GambitFireteamVsFireteamHistogram extends BaseGraph {
     this.formatData = this.formatData.bind(this);
     
   }
-  componentDidMount() {
-    this.setState({ 
-      chartData: this.formatData(this.state.data) 
-    });
-  }
-  formatData() {
-    var keys = Object.keys(this.state.data);
+  
+  formatData(data) {
+    var keys = Object.keys(data);
     keys.sort();
     var sorted = {};
     var y = [];
     for (var k in keys) {
-      sorted[keys[k]] = this.state.data[keys[k]];
+      sorted[keys[k]] = data[keys[k]];
       y.push(sorted[keys[k]].count);
     }
     return [{
@@ -62,3 +58,11 @@ class GambitFireteamVsFireteamHistogram extends BaseGraph {
   }
 }
 export default GambitFireteamVsFireteamHistogram;
+
+GambitFireteamVsFireteamHistogram.defaultProps = {
+  datafile: 'GambitPlayersPerTeam.json'
+};
+
+GambitFireteamVsFireteamHistogram.propTypes ={
+  datafile: PropTypes.string.isRequired
+};

@@ -1,7 +1,4 @@
-const mongodb = require("mongodb");
-var url = "mongodb://localhost:27017/mydb";
-var MongoClient = mongodb.MongoClient;
-var fs = require("fs");
+var utilities = require("./utilities");
  
 async function gambitGamesPerWeek(collection) {
   var total_games_per_week = await(collection.aggregate([
@@ -486,12 +483,7 @@ async function weaponUsage(collection) {
   return results;
 }
 
-
-MongoClient.connect(url, async function(err, db) {
-  if (err) {
-    throw err;
-  }
-  console.log("Database connected!");
+async function run(db) {
   var collection = db.collection("PGCR");
 
 
@@ -508,7 +500,7 @@ MongoClient.connect(url, async function(err, db) {
     final[k[i]] =  { count: playerBreakdown[k[i]].count/sum, wins: playerBreakdown[k[i]].wins/playerBreakdown[k[i]].count };
   }
   console.log("Team Composition Histogram: ", final);
-  fs.writeFileSync("./src/graph_data/GambitPlayersPerTeam/index.js", `module.exports = ${ JSON.stringify({ data: final }, null, 2) }`);
+  await utilities.writeFile("GambitPlayersPerTeam.json", final);
 
   // do the same analysis, but include matches where people quit
   console.log("Team Composition with Quitters");
@@ -525,12 +517,12 @@ MongoClient.connect(url, async function(err, db) {
     final[k[i]] =  { count: playerBreakdown[k[i]].count/sum, wins: playerBreakdown[k[i]].wins/playerBreakdown[k[i]].count };
   }
   console.log("Team Composition with Quitters: ", final);
-  fs.writeFileSync("./src/graph_data/GambitPlayersPerTeam_withQuitters/index.js", `module.exports = ${ JSON.stringify({ data: final }, null, 2) }`);
+  await utilities.writeFile("GambitPlayersPerTeam_withQuitters.json", final);
   
   // calculate win rate
   var winRate = await winRatePerFireteam(collection);
   console.log("Win rate per team composition: ", JSON.stringify(winRate, null, 2));
-  fs.writeFileSync("./src/graph_data/GambitWinRatePerFireteam/index.js", `module.exports = ${ JSON.stringify({ data: winRate }, null, 2) }`);
+  await utilities.writeFile("GambitWinRatePerFireteam.json", winRate);
 
 
   // calculate quit rate and impact 
@@ -560,7 +552,10 @@ MongoClient.connect(url, async function(err, db) {
     final[keys[i]].wins_without_quits_ratio = wins_without_quitters / games_without_quitters; 
   }
   console.log(JSON.stringify(final, null, 2));
-  fs.writeFileSync("./src/graph_data/GambitQuitRatePerFireteam/index.js", `module.exports = ${ JSON.stringify({ data: final }, null, 2) }`);
+  await utilities.writeFile("GambitQuitRatePerFireteam.json", final);
 
-  process.exit(0);
-});
+}
+
+if (require.main === module) {
+  utilities.runScript(run);
+}

@@ -1,9 +1,6 @@
-const mongodb = require("mongodb");
 var { TopTenWeaponsData } = require("../src/graph_data");
+const utilities = require('./utilities');
 
-var url = "mongodb://localhost:27017/mydb";
-var MongoClient = mongodb.MongoClient;
-var fs = require("fs");
 
 function getDateFromYearAndWeek(y, w) {
   var simple = new Date(y, 0, 1 + (w - 1) * 7);
@@ -151,16 +148,11 @@ function consecutiveGrowthWeeks(weapons) {
       }
     };
   });
-  return growth_weeks;
+  return growth_weapons;
 
 }
 
-MongoClient.connect(url, async function(err, db) {
-  if (err) {
-    throw err;
-  }
-  console.log("Database connected!");
-
+async function run(db) {
   var weapons_per_week = db.collection("WeaponKillsPerWeek"); 
 
   console.log("Aggregating data");
@@ -223,8 +215,9 @@ MongoClient.connect(url, async function(err, db) {
 
 
 
-  fs.writeFileSync("src/graph_data/Meta/index.js", `module.exports = ${ JSON.stringify({ num_weeks: top_ten_num_weeks, total_weapons: top_ten.length, averages: top_ten_average }) }`);
+  await utilities.writeFile("Meta.json", { num_weeks: top_ten_num_weeks, total_weapons: top_ten.length, averages: top_ten_average });
+}
 
-  process.exit(0);
-  
-});
+if (require.main === module) {
+  utilities.runScript(run);
+}

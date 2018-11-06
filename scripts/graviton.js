@@ -1,20 +1,12 @@
-const mongodb = require("mongodb");
-const fs = require("fs");
+const utilities = require("./utilities");
 
-var url = "mongodb://localhost:27017/mydb";
-var MongoClient = mongodb.MongoClient;
-
-
-MongoClient.connect(url, async function(err, db) {
-  if (err) {
-    throw err;
-  }
+async function run(db) {
   console.log("Database connected!");
 
   var collection = db.collection("PGCR");
 
   console.log("Total games per week");
-  var total_games_per_week = await(collection.aggregate([
+  /*var total_games_per_week = await(collection.aggregate([
     { $match: { "activityDetails.modes": 5 } }, 
     { $project: { id: 1, week: { $week: "$period" }, year: { $year: "$period" } } }, 
     { $group: { "_id": { week: "$week", "year": "$year" }, count: { $sum: 1 } } },
@@ -85,7 +77,7 @@ MongoClient.connect(url, async function(err, db) {
       { $out: "WeaponKillsPerWeek" }
     ]).toArray());
   var toc = new Date();
-  console.log("Finished WeaponKillsPerWeek: ", ((toc - now)/1000));
+  console.log("Finished WeaponKillsPerWeek: ", ((toc - now)/1000));*/
  
   var weapons_per_week = db.collection("WeaponKillsPerWeek"); 
   console.log("Getting top 10");
@@ -96,9 +88,10 @@ MongoClient.connect(url, async function(err, db) {
     { $group: { _id: "$_id", data: { $push: { ratio: "$ratio", date: "$date" } } } 
     }]).toArray());
   var top_ten = { data: top_ten };
-  fs.writeFileSync("src/graph_data/TopTenWeapons/index.js", `module.exports = ${ JSON.stringify(top_ten) }`);
-  console.log();
+  await utilities.writeFile("TopTenWeapons.json", top_ten);
 
+}
 
-  process.exit(0);
-});
+if (require.main === module) {
+  utilities.runScript(run);
+}

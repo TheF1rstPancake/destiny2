@@ -1,8 +1,9 @@
 import React from 'react';
 import BaseGraph from '../BaseGraph';
-import { WeaponHistogramData } from '../../graph_data';
 import Plot from 'react-plotly.js';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 
 class WeaponKillsHistogram extends BaseGraph {
   constructor() {
@@ -12,9 +13,6 @@ class WeaponKillsHistogram extends BaseGraph {
    
     this.formatData = this.formatData.bind(this);
     this.createChart = this.createChart.bind(this);
-
-    // format the data
-    this.state.chartData = this.formatData(WeaponHistogramData.data);
   }
   formatData(data) {
     var x = data.map(function(w) {
@@ -28,10 +26,6 @@ class WeaponKillsHistogram extends BaseGraph {
       y: y,
       type: "bar"
     }];
-  }
-
-  componentDidMount() {
-
   }
 
   createChart() {
@@ -62,3 +56,11 @@ class WeaponKillsHistogram extends BaseGraph {
 }
 
 export default WeaponKillsHistogram;
+
+WeaponKillsHistogram.defaultProps = {
+  datafile: 'WeaponHistogram.json'
+};
+
+WeaponKillsHistogram.propTypes = {
+  datafile: PropTypes.string.isRequired
+};

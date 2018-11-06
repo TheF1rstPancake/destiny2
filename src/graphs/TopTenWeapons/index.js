@@ -1,11 +1,9 @@
 
 import React from 'react';
-import axios from 'axios';
 import BaseGraph from '../BaseGraph';
-import { TopTenWeaponsData } from '../../graph_data';
 import Plot from 'react-plotly.js';
 import { Link } from 'react-router-dom';
-
+import PropTypes from 'prop-types';
 
 class TopTenWeapons extends BaseGraph {
   constructor() {
@@ -15,12 +13,11 @@ class TopTenWeapons extends BaseGraph {
     this.formatData = this.formatData.bind(this);
     this.createChart = this.createChart.bind(this);
 
-    // format the data
-    this.state.chartData = this.formatData(TopTenWeaponsData);
+    
   }
-  formatData() {
+  formatData(data) {
     var _this = this;
-    var data = TopTenWeaponsData.data.filter(function(d) {
+    var data = data.data.filter(function(d) {
       if (d.data.length >= 3) {
         return d;
       }
@@ -61,17 +58,17 @@ class TopTenWeapons extends BaseGraph {
     return data;
   }
 
-  componentDidMount() {
-
-  }
-
   createChart() {
     var chartData = this.state.chartData;
     chartData.type = "scatter";
     chartData.name="Top Ten";
     return <Plot
       data={chartData}
-      layout={{ autosize: true, margin: this.default_layout.margin, xaxis: { automargin: true } }}
+      layout={{ 
+        autosize: true,
+        margin: this.default_layout.margin, 
+        xaxis: { automargin: true } 
+      }}
       useResizeHandler={true}
       className="plot-class"
       config={this.default_config}
@@ -89,3 +86,11 @@ class TopTenWeapons extends BaseGraph {
 }
 
 export default TopTenWeapons;
+
+TopTenWeapons.defaultProps = {
+  datafile: 'TopTenWeapons.json'
+};
+
+TopTenWeapons.propTypes = {
+  datafile: PropTypes.string.isRequired
+};

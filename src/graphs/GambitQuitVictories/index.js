@@ -1,9 +1,9 @@
 import React from 'react';
 import BaseGraph from '../BaseGraph';
-import { GambitQuitRatePerTeamData } from '../../graph_data';
 
 import Plot from 'react-plotly.js';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class GambitQuitVictories extends BaseGraph {
   constructor(props) {
@@ -12,11 +12,7 @@ class GambitQuitVictories extends BaseGraph {
     
     this.createChart = this.createChart.bind(this);
   }
-  componentDidMount() {
-    this.setState({
-      chartData: this.formatData(GambitQuitRatePerTeamData.data)
-    });
-  }
+  
   formatData(data) {
     var keys = Object.keys(data).sort();
 
@@ -73,3 +69,11 @@ class GambitQuitVictories extends BaseGraph {
 }
 
 export default GambitQuitVictories;
+
+GambitQuitVictories.defaultProps = {
+  datafile: 'GambitQuitRatePerFireteam.json'
+};
+
+GambitQuitVictories.propTypes ={
+  datafile: PropTypes.string.isRequired
+};

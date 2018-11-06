@@ -1,8 +1,4 @@
-const mongodb = require("mongodb");
-const fs = require("fs");
-
-var url = "mongodb://localhost:27017/mydb";
-var MongoClient = mongodb.MongoClient;
+var utilities = require("./utilities");
 
 
 function histogram(data, num_bins) {
@@ -30,7 +26,7 @@ function histogram(data, num_bins) {
   return bins;
 }
 
-MongoClient.connect(url, async function(err, db) {
+async function run(db) {
   var collection = db.collection("WeaponKillsPerWeek");
 
   var data = collection.find({}, { "weapons.ratio": 1 });
@@ -70,6 +66,10 @@ MongoClient.connect(url, async function(err, db) {
       break;
     }
   }
-  fs.writeFileSync("./src/graph_data/WeaponHistogram/index.js", `module.exports={data:${ JSON.stringify(average_hist) }}`);
-  process.exit(0);
-});
+  await utilities.writeFile("WeaponHistogram.json", average_hist);
+  return true;
+}
+
+if (require.main === module) {
+  utilities.runScript(run);
+}

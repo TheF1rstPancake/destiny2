@@ -1,13 +1,10 @@
-/* global Plotly:true */
 import React, { Component } from 'react';
-
-/*import createPlotlyComponent from 'react-plotly.js/factory';
-const Plot = createPlotlyComponent(Plotly);*/
-
+import axios from 'axios';
 class BaseGraph extends Component {
   constructor() {
     super();
     this.state = {};
+    this.graph_data_location = '/graph_data';
     this.formatDate = this.formatDate.bind(this);
     this.default_layout = { 
       margin: {
@@ -18,11 +15,30 @@ class BaseGraph extends Component {
     this.default_config = {
       modeBarButtonsToRemove: ['lasso2d', 'autoScale2d', 'hoverClosestCartesian', 'toggleSpikelines', 'sendDataToCloud']
     };
-    //this.Plot = Plot;
   }
 
   formatDate(d) {
     return `${ d.getUTCMonth()+1 }/${ d.getUTCDate() }`;
+  }
+
+  componentDidMount() {
+    if (this.props.datafile !== undefined) {
+      axios.get(`${ this.graph_data_location }/${ this.props.datafile }`)
+        .then((data) => {
+          let chartData = data.data;
+
+          // if the base class has defined a "formatData" function
+          // we should run it here
+          if (this.formatData !== undefined) {
+            chartData = this.formatData(chartData);
+          }
+          this.setState({ 
+            chartData: chartData
+          });
+        }).catch((err)=>{
+          console.log("ERR MOUNTING: ", err);
+        });
+    }
   }
   getDateFromYearAndWeek(y, w) {
     var simple = new Date(y, 0, 1 + (w - 1) * 7);
@@ -35,6 +51,8 @@ class BaseGraph extends Component {
     }
     return ISOweekStart;
   }
+
+  
   render() {
     return null;
   }

@@ -1,9 +1,9 @@
 import React from 'react';
 import BaseGraph from '../BaseGraph';
-import { GambitWinRatePerFireteamData } from '../../graph_data';
 
 import Plot from 'react-plotly.js';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class GambitFireteamHistogram extends BaseGraph {
   constructor(props) {
@@ -11,11 +11,7 @@ class GambitFireteamHistogram extends BaseGraph {
     this.state = {};
 
     this.createChart = this.createChart.bind(this);
-  }
-  componentDidMount() {
-    this.setState({ 
-      chartData: this.formatData(GambitWinRatePerFireteamData.data) 
-    });
+    this.formatData = this.formatData.bind(this);
   }
   formatData(data) {
     var keys = Object.keys(data);
@@ -57,3 +53,11 @@ class GambitFireteamHistogram extends BaseGraph {
   }
 }
 export default GambitFireteamHistogram;
+
+GambitFireteamHistogram.defaultProps = {
+  datafile: 'GambitWinRatePerFireteam.json'
+};
+
+GambitFireteamHistogram.propTypes ={
+  datafile: PropTypes.string.isRequired
+};
