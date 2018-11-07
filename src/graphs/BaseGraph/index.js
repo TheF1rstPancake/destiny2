@@ -4,7 +4,7 @@ class BaseGraph extends Component {
   constructor() {
     super();
     this.state = {};
-    this.graph_data_location = '/graph_data';
+    this.graph_data_location = '/destiny2/graph_data';
     this.formatDate = this.formatDate.bind(this);
     this.default_layout = { 
       margin: {
@@ -35,7 +35,7 @@ class BaseGraph extends Component {
           this.setState({ 
             chartData: chartData
           });
-        }).catch((err)=>{
+        }).catch((err) => {
           console.log("ERR MOUNTING: ", err);
         });
     }

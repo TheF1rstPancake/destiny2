@@ -15,11 +15,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// mimic the static file server that GH pages provides
+app.use('/destiny2', express.static(path.join('public')));
+
 app.use(express.static(path.join(__dirname, 'build')));
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', index);
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile('build/index.html', { root: global });
 });
 
