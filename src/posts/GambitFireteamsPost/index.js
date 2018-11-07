@@ -37,7 +37,7 @@ class GambitFireteamsPost extends Component {
         </div>
         <GambitFireteamWinRate/>
         <div>
-          The answer should be unsurprising.  Solo players teams tend to win 50% of their matches.  Now this graph is slightly skewed.  If a team of solo players goes up against another team of solo players, who wins?  Well, one of the teams with solo players.  So anytime two teams of the same fireteam composition go against eachother, we count that as a win.
+          The answer should be unsurprising.  Solo players teams tend to win 50% of their matches.  Now this graph is slightly skewed.  If a team of solo players goes up against another team of solo players, who wins?  Well, one of the teams with solo players.  So anytime two teams of the same fireteam composition go against each other, we count that as a win.
         </div>
         <div>
           We will break this out further later.  For now, it is sufficient to say that solo teams win 50% of their matches.  As you move up the ladder into teams that have pairs, triplets you see an upward trend in win rate, which aligns with our expectation that your ability to win increases as you add more players to your fireteam.
@@ -57,7 +57,7 @@ class GambitFireteamsPost extends Component {
           The quit rate isn't any better or worse depending on the fireteam composition.  In general, people quit with equal frequency.  The deviation between the teams isn't enough to be relevant.  So people quit in equal measure regardless of what type of team they are up against.
         </div>
         <div>
-          During this analysis we also decided to examine what effect quiting has to the probability that a given team will win.  Looking at these matches we can calculate the win rate of a fireteam when an opposing member quits.
+          During this analysis we also decided to examine what effect quitting has to the probability that a given team will win.  Looking at these matches we can calculate the win rate of a fireteam when an opposing member quits.
         </div>
         <GambitQuitVictories/>
         <div>
@@ -74,11 +74,11 @@ class GambitFireteamsPost extends Component {
           So while quitting generally ensures your opponent will win, another questions we should be asking is "did you even have a chance to win the game in the first place?"
         </div>
         <div>
-          To do this, we can look only at games where there were <strong>no</strong> quitters and see with what frequency Bungie matchmakes different fireteam compositions against eachother.  If we assume that teams of solos do not have a chance of winning against a full fireteam, then we should see that Bungie's matchmaking does not pair these two types of teams against eachother.
+          To do this, we can look only at games where there were <strong>no</strong> quitters and see with what frequency Bungie matchmakes different fireteam compositions against each other.  If we assume that teams of solos do not have a chance of winning against a full fireteam, then we should see that Bungie's matchmaking does not pair these two types of teams against eachother.
         </div>
         <GambitFireteamVsFireteamHistogram/>
         <div>
-          What we see is that Bungie's matchmaking may not follow our assumption.  There are a lot of factors that could go into matchmaking (for example, network compatability) that can compete with creating a fair and balanced match.  We can see the result of this in the fact that 8% of all Gambit games are actually solo teams competing against full fireteams.  Another 9% is two solos and a pair going up against a full fireteam.  Just taking these two numbers into account, at least 17% of all Gambit matches don't involve an equitable distribution of fireteams.
+          What we see is that Bungie's matchmaking may not follow our assumption.  There are a lot of factors that could go into matchmaking (for example, network compatibility.) that can compete with creating a fair and balanced match.  We can see the result of this in the fact that 8% of all Gambit games are actually solo teams competing against full fireteams.  Another 9% is two solos and a pair going up against a full fireteam.  Just taking these two numbers into account, at least 17% of all Gambit matches don't involve an equitable distribution of fireteams.
         </div>
         <div>
           To Bungie's credit, 31% of games involve solo teams or a full solo team against two solos and a pair.
@@ -88,7 +88,7 @@ class GambitFireteamsPost extends Component {
         </div>
         <GambitFireteamVsFireteam/>
         <div>
-          While solo teams make up a signficant aspect of the population, they really don't win against other team compositions very often.  As a team of solos, your chance of winning against a full fireteam is <strong>39%</strong>.  Not abysmal, but signficantly different than 50%.
+          While solo teams make up a significant aspect of the population, they really don't win against other team compositions very often.  As a team of solos, your chance of winning against a full fireteam is <strong>39%</strong>.  Not abysmal, but significantly different than 50%.
         </div>
         <div>
           Again, this is ignoring the effects of quitting.  For teams of [1,1,1,1] that choose to stick out their match against a full squad, they historically do not win very often.

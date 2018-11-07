@@ -169,7 +169,6 @@ async function getQuitRateIterative(cursor) {
   // we know a player quit by looking at the values.completed field
   // 0 means no, 1 means Yes
   // to start this function just returns how many games at least one user quits
-  var num_games = await cursor.count();
   var quits = {};
 
   return new Promise((resolve, reject) => {
